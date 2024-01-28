@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 std::vector<double> build_vector()
 {
@@ -15,21 +16,10 @@ std::vector<double> build_vector()
 
 bool check_triangle_possible(std::vector<double> nums)
 {
-    double sum;
-    for(int i = 0; i < 3; i++)
+    std::sort(nums.begin(),nums.end());
+    if (nums[2] >= (nums[1]+nums[0]))
     {
-        sum = 0;
-        for(int j = 0; j < 3; j++)
-        {
-            if (j != i)
-            {
-                sum += nums[j];
-            }
-        }
-        if(nums[i] >= sum)
-        {
-            return false;
-        }
+        return false;
     }
     return true;
 }
