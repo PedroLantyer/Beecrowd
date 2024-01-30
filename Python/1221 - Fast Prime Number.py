@@ -20,5 +20,4 @@ if __name__ == "__main__":
 
 #using algorithm o(sqrt(n)) -
 #first you get the square root of an integer
-#all prime numbers larger than 6 can be represented by 6*k with k being the an integer number
-#since
+#all prime numbers larger than 6 can be represented by 6*k +/- 1 with k being an integer number
