@@ -43,3 +43,9 @@ int main()
         }
     }
 }
+
+/*
+Lembrando que todo numero primo maior que 6 pode ser representado por: 6*K +/- 1
+e que todo número composto tem pelo menos um fator primo menor ou igual a raiz dele mesmo
+(ou seja se A não possui fator primo menor ou igual a sqrt(A), A é um numero primo)
+*/
