@@ -20,9 +20,6 @@ bool get_result(int x, int y)
 
 int main()
 {
-    //linhas impares começam com quadrado branco
-    //linhas pares começam com quadrado preto
-    //DA ESQUERDA PRA DIREITA
     int x, y;
     std::cin >> x >> y;
     std::cout << get_result(x,y) << std::endl;
