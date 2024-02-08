@@ -1,110 +1,104 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-bool is_upper(char c)
+bool is_upper(char ch)
 {
-    if (c >= 65 && c <= 90)
+    if (ch >= 65 && ch <= 90)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
-bool is_lower(char c)
+bool is_lower(char ch)
 {
-    if (c >= 97 && c <= 122)
+    if (ch >= 97 && ch <= 122)
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
-bool is_alpha(char c)
+bool is_alpha(char ch)
 {
-    if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+    if(is_upper(ch) || is_lower(ch))
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
-char to_upper(char c)
+std::string adjust_string(std::string str)
 {
-    if (is_upper(c))
-    {
-        return c;
-    }
-    c -= 32;
-    return c;
-}
+    std::string next = "DOWN";
+    bool first_letter_adjusted = false;
 
-char to_lower(char c)
-{
-    if (is_lower(c))
+    for(int i = 0; i < (int)str.size(); i++)
     {
-        return c;
-    }
-    c += 32;
-    return c;
-}
-
-std::string adjust_case(std::string text)
-{
-    std::string next_op;
-    char ch;
-    for(int i = 0; i < (int)text.size();i++)
-    {
-        ch = text[i];
-        if (is_alpha(ch))
+        if(is_alpha(str[i]))
         {
-            if(next_op.empty())
+            if(first_letter_adjusted == false)
             {
-                ch = to_upper(ch);
-                next_op = "LOWER";
+                if(is_lower(str[i]))
+                {
+                    str[i] -= 32;
+                }
+                first_letter_adjusted = true;
+                continue;
             }
-            else
+
+            if(next == "DOWN")
             {
-                if(next_op == "UPPER")
+                if(is_upper(str[i]))
                 {
-                    ch = to_upper(ch);
-                    next_op = "LOWER";
+                    str[i] += 32;
                 }
-                else if (next_op == "LOWER")
+                next = "UP";
+                continue;
+            }
+
+            if(next == "UP")
+            {
+                if(is_lower(str[i]))
                 {
-                    ch = to_lower(ch);
-                    next_op = "UPPER";
+                    str[i] -= 32;
                 }
+                next = "DOWN";
             }
         }
-        text[i] = ch;
     }
-    return text;
+    return str;
+}
+
+void print_results(std::vector<std::string> strings)
+{
+    for(int i = 0; i < (int)strings.size(); i++)
+    {
+        std::cout << strings[i] << std::endl;
+    }
 }
 
 int main()
 {
-    std::string string,text;
-    while(std::getline(std::cin,string))
+    std::vector<std::string> strings;
+    std::string input;
+    while(std::getline(std::cin, input))
     {
-        if (string.empty())
+        if(input.size() == 0)
         {
             break;
         }
-        text += string;
-        text += "\n";
+        if((int)input.length() > 0)
+        {
+            strings.push_back(input);
+        }
     }
-    text = adjust_case(text);
-    for(int i = 0; i < (int)text.size(); i++)
+    for(int i = 0; i < (int)strings.size(); i++)
     {
-        std::cout << text[i];
+        strings[i] = adjust_string(strings[i]);
     }
+    print_results(strings);
+    
+    return 0;
 }
