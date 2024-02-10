@@ -1,21 +1,21 @@
-#include <iostream>
+#include<iostream>
 #include <cmath>
 
 bool is_prime(int num)
 {
-    if (num == 2 || num == 3)
+    if(num == 2 || num == 3)
     {
         return true;
     }
-    if (num <= 1 || num % 2 == 0 || num % 3 == 0)
+    if(num <= 1 || num % 2 == 0 || num % 3 == 0)
     {
         return false;
     }
-
-    int sqrt_of_num = (int)sqrt(num);
-    for(int k = 1; ((6*k)-1) < (sqrt_of_num+1); k+= 1)
+    
+    int sqrt_num = (int)sqrt(num);
+    for(int k = 1;(6*k-1) < (sqrt_num + 1); k++)
     {
-        if (num % ((6*k)-1) == 0 || num % ((6*k)+1) == 0)
+        if(num % ((6*k)-1) == 0 || num % ((6*k)+1) == 0)
         {
             return false;
         }
@@ -25,22 +25,17 @@ bool is_prime(int num)
 
 int main()
 {
-    int count,num;
-    bool prime;
-    std::cin >> count;
-
-    for(int i = 0; i < count; i++)
+    int test_cases;
+    int num;
+    std::cin >> test_cases;
+    for(int i = 0; i < test_cases; i++)
     {
         std::cin >> num;
-        prime = is_prime(num);
-        if(prime)
+        if(is_prime(num) == false)
         {
-            printf("%d eh primo\n", num);
+            printf("Not ");
         }
-        else
-        {
-            printf("%d nao eh primo\n", num);
-        }
+        printf("Prime\n");
     }
 }
 
