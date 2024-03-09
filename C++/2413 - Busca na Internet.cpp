@@ -1,0 +1,24 @@
+#include<iostream>
+
+int main()
+{
+    int third_link, first_link;
+    scanf("%d", &third_link); //GET VISITS TO THIRD LINK
+    first_link = (third_link*4);
+    printf("%d\n", first_link);
+}
+
+/**THE NUMBER OF PEOPLE WHO CLICKED ON THE SECOND LINK
+ * IS THE TWICE AS BIG AS THE NUMBER OF PEOPLE WHO CLICKED ON THE THIRD LINK
+*/
+
+/**THE NUMBER OF PEOPLE WHO CLICKED ON THE FIRST LINK
+ * IS THE TWICE AS BIG AS THE NUMBER OF PEOPLE WHO CLICKED ON THE SECOND LINK
+*/
+
+/*
+SECOND_LINK = (THIRD_LINK*2)
+FIRST_LINK = (SECOND_LINK*2)
+AS SUCH:
+FIRST_LINK = (THIRD_LINK*2)*2 <=> FIRST_LINK = (THIRD_LINK*4);
+*/
